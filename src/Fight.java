@@ -7,9 +7,6 @@ public class Fight {
         boolean defend = false;
         fightanimation action = new fightanimation();
 
-        // from your main/game loop, NOT here:
-        // hero.resetSpecialForLevel();
-
         while (hero.isAlive() && enemy.isAlive()) {
             System.out.println("\n--- STATUS ---");
             System.out.println(hero.getName() + " HP: " + hero.getHp() + "/" + hero.getMaxHp());
