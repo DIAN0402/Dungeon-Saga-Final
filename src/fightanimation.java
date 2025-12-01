@@ -10,20 +10,70 @@ public class fightanimation {
 
         switch (heroName) {
             case "Knight":
-                System.out.println("(No animation defined for Knight yet)");
+                switch(location) {
+                    case "Whispering Passage":
+                        if(enemy.isAlive() == true && !((enemy.getHp() < enemy.getMaxHp()) || (enemy.getHp() > enemy.getMaxHp()))) {
+                            display.DisplayKnightvsWhiteBeast();
+                            break;
+                        }
+                    case "Surtur’s Fiery Chamber": 
+                        if(enemy.isAlive() == true && enemy.getHp() == enemy.getMaxHp()) {
+                            display.DisplayKnightvsDragon();
+                            break;
+                        }
+                    case "Throne of the Chasm": 
+                        if(enemy.isAlive() == true && enemy.getHp() == enemy.getMaxHp()) {
+                            display.DisplayKnightvsDemonking();
+                            break;
+                        }
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case "Assassin":
-                System.out.println("(No animation defined for Assassin yet)");
+                switch(location) {
+                    case "Whispering Passage":
+                        if(enemy.isAlive() == true && enemy.getHp() == enemy.getMaxHp()) {
+                            display.DisplayAssassinvsWhiteBeast();
+                            break;
+                        }
+                    case "Surtur’s Fiery Chamber": 
+                        if(enemy.isAlive() == true && enemy.getHp() == enemy.getMaxHp()) {
+                            display.DisplayAssassinvsDragon();
+                            break;
+                        }
+                        break;
+                    case "Throne of the Chasm": 
+                        if(enemy.isAlive() == true && enemy.getHp() == enemy.getMaxHp()) {
+                            display.DisplayAssasinvsDemonking();
+                            break;
+                        }
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case "Wizard":
-                if(enemy.isAlive()) {
-                    if(location.equals("Surtur's Fiery Chamber") || (location.contains("Surtur") && location.contains("Fiery Chamber"))) {
-                        display.DisplayWizardvsDragon();
-                    } else if(location.equals("Whispering Passage")) {
-                        display.DisplayWizardvsWhiteBeast();
-                    } else if(location.equals("Throne of the Chasm")) {
-                        display.DisplayWizardvsUndeadKing();
-                    }
+                switch(location) {
+                    case "Whispering Passage":
+                        if(enemy.isAlive() == true && enemy.getHp() == enemy.getMaxHp()) {
+                            display.DisplayWizardvsWhiteBeast();
+                            break;
+                        }
+                    case "Surtur’s Fiery Chamber": 
+                        if(enemy.isAlive() == true && enemy.getHp() == enemy.getMaxHp()) {
+                            display.DisplayWizardvsDragon();
+                            break;
+                        }
+                        break;
+                    case "Throne of the Chasm": 
+                        if(enemy.isAlive() == true && enemy.getHp() == enemy.getMaxHp())    {
+                            display.DisplayWizardvsDemonking();
+                            break;
+                        }
+                    default:
+                        break;
                 }
                 break;
             default:
@@ -38,73 +88,119 @@ public class fightanimation {
 
         switch (heroName) {
             case "Knight":
-                System.out.println("(No fight animation defined for Knight yet)");
+                switch(location) {
+                    case "Whispering Passage":
+                        if(choice.equals("1")) { // Attack
+                            display.DisplayKnightAttacksWhiteBeast();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayKnightDefendWhiteBeast();
+                        } else if(choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayAssassinSkillonWhiteBeast();
+                        } else {
+                            display.DisplayWhiteBeastAttacksKnight();
+                        }
+                        break;
+                    case "Surtur’s Fiery Chamber":
+                        if(choice.equals("1")) { // Attack
+                            display.DisplayKnightAttacksDragon();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayKnightDefendDragon();
+                        } else if(choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayKnightSkillonDragon();
+                        } else {
+                            display.DisplayDragonAttacksKnight();
+                        }
+                        break;
+                    case "Throne of the Chasm":
+                        if(choice.equals("1")) { // Attack  
+                            display.DisplayKnightAttacksDemonking();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayKnightDefendDemonking();
+                        } else if(choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayKnightSkillonDemonking();
+                        } else {
+                            display.DisplayDemonkingAttacksKnight();
+                        }
+                }
                 break;
             case "Assassin":
-                System.out.println("(No fight animation defined for Assassin yet)");
+                switch(location) {
+                    case "Whispering Passage":
+                        if(choice.equals("1")) { // Attack
+                            display.DisplayAssassinAttacksWhiteBeast();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayAssassinDefendWhiteBeast();
+                        } else if(choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayAssassinSkillonWhiteBeast();
+                        } else {
+                            display.DisplayWhiteBeastAttacksAssassin();
+                        }
+                        break;
+                    case "Surtur’s Fiery Chamber":
+                        if(choice.equals("1")) { // Attack
+                            display.DisplayAssassinAttacksDragon();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayAssassinDefendDragon();
+                        } else if(choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayAssassinSkillonDragon();
+                        } else {
+                            display.DisplayDragonAttacksAssassin();
+                        }
+                        break;
+                    case "Throne of the Chasm":
+                        if(choice.equals("1")) { // Attack  
+                            display.DisplayAssassinAttacksDemonking();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayAssassinDefendDemonking();
+                        } else if(choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayAssassinSkillonDemonking();
+                        } else {
+                            display.DisplayDemonkingAttacksAssassin();
+                        }
+                    default:
+                        break;
+                }
                 break;
             case "Wizard":
-                if(location.equals("Surtur's Fiery Chamber") || (location.contains("Surtur") && location.contains("Fiery Chamber"))) {
-                    if(choice.equals("1")) { // Attack
-                        display.DisplayWizardAttackDragon();
-                    } else if(choice.equals("2")) { // Defend
-                        display.DisplayWizardDefendDragon();
-                    } else if(choice.equals("3")) { // Special - healing
-                        display.DisplayWizardSpecialDragon();
-                    } else {
-                        // Invalid input - enemy attacks
-                        display.DisplayDragonAttackWizard();
-                    }
-                } else if(location.equals("Whispering Passage")) {
-                    if(choice.equals("1")) { // Attack
-                        display.DisplayWizardAttackWhiteBeast();
-                    } else if(choice.equals("2")) { // Defend
-                        display.DisplayWizardDefendWhiteBeast();
-                    } else if(choice.equals("3")) { // Special - healing
-                        display.DisplayWizardSpecialWhiteBeast();
-                    } else {
-                        // Invalid input - enemy attacks
-                        display.DisplayWhiteBeastAttackWizard();
-                    }
-                } else if(location.equals("Throne of the Chasm")) {
-                    if(choice.equals("1")) { // Attack
-                        display.DisplayWizardAttackUndeadKing();
-                    } else if(choice.equals("2")) { // Defend
-                        display.DisplayWizardDefendUndeadKing();
-                    } else if(choice.equals("3")) { // Special - healing
-                        display.DisplayWizardSpecialUndeadKing();
-                    } else {
-                        // Invalid input - enemy attacks
-                        display.DisplayUndeadKingAttackWizard();
-                    }
+                switch(location) {
+                    case "Whispering Passage":
+                        if(choice.equals("1")) { // Attack
+                            display.DisplayWizardAttacksWhiteBeast();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayWizardDefendWhiteBeast();
+                        } else if (choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayWizardSkillonWhiteBeast();
+                        } else {
+                            display.DisplayWhiteBeastAttacksWizard();
+                        }
+                        break;
+                    case "Surtur’s Fiery Chamber":
+                        if(choice.equals("1")) { // Attack
+                            display.DisplayWizardAttackDragon();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayWizardDefendDragon();
+                        } else if(choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayWizardSkillonDragon();
+                        } else {
+                            display.DisplayDragonAttackWizard();
+                        }
+                        break;
+                    case "Throne of the Chasm":
+                        if(choice.equals("1")) { // Attack  
+                            display.DisplayWizardAttacksDemonking();
+                        } else if(choice.equals("2")) { // Defend
+                            display.DisplayWizardDefendDemonking();
+                        } else if(choice.equals("3") && !hero.specialAvailable()) { // Special
+                            display.DisplayWizardSkillonDemonking();
+                        } else {
+                            display.DisplayDemonkingAttacksWizard();
+                        }
+                    default:
+                        break;
                 }
                 break;
             default:
                 System.out.println("Unknown Hero: " + heroName);
-                break;
-        }
-    }
-
-    public void EnemyAttackAnimation (Hero hero, Enemy enemy, String heroName, String location) {
-        DisplayFight display = new DisplayFight();
-
-        switch (heroName) {
-            case "Knight":
-                System.out.println("(No enemy attack animation defined for Knight yet)");
-                break;
-            case "Assassin":
-                System.out.println("(No enemy attack animation defined for Assassin yet)");
-                break;
-            case "Wizard":
-                if(location.equals("Surtur's Fiery Chamber") || (location.contains("Surtur") && location.contains("Fiery Chamber"))) {
-                    display.DisplayDragonAttackWizard();
-                } else if(location.equals("Whispering Passage")) {
-                    display.DisplayWhiteBeastAttackWizard();
-                } else if(location.equals("Throne of the Chasm")) {
-                    display.DisplayUndeadKingAttackWizard();
-                }
-                break;
-            default:
                 break;
         }
     }

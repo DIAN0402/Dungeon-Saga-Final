@@ -8,19 +8,22 @@ public class Fight {
         fightanimation action = new fightanimation();
 
         while (hero.isAlive() && enemy.isAlive()) {
-            System.out.println("\n--- STATUS ---");
+            System.out.println("--- STATUS ---");
             System.out.println(hero.getName() + " HP: " + hero.getHp() + "/" + hero.getMaxHp());
             System.out.println(enemy.getName() + " HP: " + enemy.getHp() + "/" + enemy.getMaxHp());
 
             action.IdleAnimation(hero, enemy, hero.getName(), location.getLocation());
+            
 
             System.out.println("\nChoose Action:");
             System.out.println("1) Attack");
             System.out.println("2) Defend");
             System.out.println("3) Special" + (hero.specialAvailable() ? "" : " (USED)"));
             System.out.print("Input: ");
-
             String choice = scanner.nextLine();
+            
+            
+            
             switch (choice) {
                 case "1":
                     enemy.takeDamage(hero.getAttack());
@@ -32,17 +35,12 @@ public class Fight {
                     action.FightAnimation(hero, enemy, hero.getName(), location.getLocation(), choice);
                     break;
                 case "3":
-                    if (hero.specialAvailable()) {
-                        hero.useSpecial(enemy); 
-                        action.FightAnimation(hero, enemy, hero.getName(), location.getLocation(), choice);
-                    } else {
-                        System.out.println("Special already used this level!");
-                        continue; 
-                    }
+                    hero.useSpecial(enemy);
+                    action.FightAnimation(hero, enemy, hero.getName(), location.getLocation(), choice);
                     break;
                 default:
-                    System.out.println("Invalid input. You lose your turn!");
                     action.FightAnimation(hero, enemy, hero.getName(), location.getLocation(), choice);
+                    System.out.println("Invalid input. You lose your turn!");
             }
 
             if (!enemy.isAlive()) return true;
@@ -50,20 +48,14 @@ public class Fight {
             int dmg = enemy.randomDamage();
 
             if (defend) {
-                // Defend animation already shows enemy attacking, so don't show it again
                 System.out.println(hero.getName() + " blocks all damage!");
                 defend = false;
+            } else if (hero.blocksThisTurn()) {
+                System.out.println(hero.getName() + " blocks all damage with Shield Bash!");
+                hero.consumeBlock();
             } else {
-                // Show enemy attack animation only when not defending
-                action.EnemyAttackAnimation(hero, enemy, hero.getName(), location.getLocation());
-                
-                if (hero.blocksThisTurn()) {
-                    System.out.println(hero.getName() + " blocks all damage with Shield Bash!");
-                    hero.consumeBlock();
-                } else {
-                    System.out.println(enemy.getName() + " hits for " + dmg + " damage!");
-                    hero.takeDamage(dmg);
-                }
+                System.out.println(enemy.getName() + " hits for " + dmg + " damage!");
+                hero.takeDamage(dmg);
             }
         }
         return hero.isAlive();
